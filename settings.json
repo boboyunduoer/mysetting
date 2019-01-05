@@ -1,0 +1,44 @@
+{
+    //"python.linting.enabled": false,
+    "python.pythonPath": "C:\\Users\\IBM_ADMIN\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "git.ignoreMissingGitWarning": true,
+    "terminal.integrated.shell.windows": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "terminal.integrated.cursorStyle": "underline",
+    "terminal.integrated.cursorBlinking": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.activityBar.visible": false,
+    "extensions.autoUpdate": false,
+    "files.autoSave": "onFocusChange",
+    "editor.detectIndentation": false,
+    "extensions.ignoreRecommendations": true,
+    "editor.fontSize": 15,
+    "workbench.statusBar.feedback.visible": false,
+    "workbench.settings.editor": "json",
+    
+   
+
+    "java.home": "C:\\PROGRA~1\\Java\\jdk1.8.0_20",
+    "maven.executable.path": "C:\\apache-maven-3.6.0\\bin\\mvn",
+    "java.configuration.maven.userSettings": "C:\\apache-maven-3.6.0\\conf\\settings.xml",
+    "maven.terminal.customEnv": [
+        {
+            "environmentVariable": "JAVA_HOME",      
+            "value": "C:\\PROGRA~1\\Java\\jdk1.8.0_20"
+        }
+    ],
+    "workbench.sideBar.location": "left",
+    "editor.minimap.enabled": false,
+    "window.menuBarVisibility": "default",
+    "window.zoomLevel": -1,
+    "workbench.statusBar.visible": true,
+    "diffEditor.ignoreTrimWhitespace": true,
+    "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"C:\\Users\\IBM_ADMIN\\.vscode\\extensions\\gabrielbb.vscode-lombok-0.9.7/server/lombok.jar\" -Xbootclasspath/a:\"C:\\Users\\IBM_ADMIN\\.vscode\\extensions\\gabrielbb.vscode-lombok-0.9.7/server/lombok.jar\"",
+    "workbench.iconTheme": "vscode-icons",
+    "explorer.confirmDelete": false,
+    "workbench.colorTheme": "Monokai",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "sync.gist": "5635a00f7770bf912ca3afc90bdd7ae4",
+    "workbench.editor.enablePreview": false,
+    "breadcrumbs.enabled": true,
+    "editor.renderControlCharacters": false,
+    }
