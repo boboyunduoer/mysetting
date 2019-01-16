@@ -1,0 +1,27 @@
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[core]
+	autocrlf = false
+	editor = code --wait
+[winUpdater]
+	recentlySeenVersion = 2.17.1.windows.2
+[diff]
+	tool = bc2
+[merge]
+	tool = bc2
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+[mergetool "sourcetree"]
+	cmd = "'' "
+	trustExitCode = true
+[difftool "bc2"]
+    cmd = 'C:/Program Files (x86)/Beyond Compare 2/BC2.exe' \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+[mergetool "bc2"]
+	cmd = 'C:/Program Files (x86)/Beyond Compare 2/BC2.exe' \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	trustExitCode = true
