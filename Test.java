@@ -9,6 +9,7 @@ public class Test {
 
      private String phonenum;
 
+     public String c;
      public String getPhonenum() {
          return this.phonenum;
      }
@@ -20,6 +21,7 @@ public class Test {
     static {
 
         System.out.println("Class initilized");
+         
     }
 
     public static void main (String[] args)
