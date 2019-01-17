@@ -33,11 +33,7 @@ public class Test {
         for (Field field: Test.class.getFields()) {
             System.out.println(field.getName());
         }
-<<<<<<< HEAD
-         System.out.println("3");
-=======
          System.out.println("5");
->>>>>>> a79e305fc53a469cc4c8951cddc03adc00a70713
          System.out.println("1");
     }
 }
