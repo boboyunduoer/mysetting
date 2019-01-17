@@ -6,9 +6,9 @@ import java.lang.reflect.Field;
 public class Test {
 
      static String a = "dd";
-
      private String phonenum;
 
+     public String b;
      public String getPhonenum() {
          return this.phonenum;
      }
@@ -18,7 +18,6 @@ public class Test {
      }
 
     static {
-
         System.out.println("Class initilized");
     }
 
