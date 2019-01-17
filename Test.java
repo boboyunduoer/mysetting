@@ -19,7 +19,7 @@ public class Test {
 
     static {
         System.out.println("Class initilized");
-        System.out.println("local");
+        System.out.println("remote");
     }
 
     public static void main (String[] args)
