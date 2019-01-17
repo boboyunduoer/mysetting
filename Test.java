@@ -19,7 +19,7 @@ public class Test {
 
     static {
         System.out.println("Class initilized");
-         
+        System.out.println("1");
     }
 
     public static void main (String[] args)
