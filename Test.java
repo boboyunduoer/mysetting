@@ -33,7 +33,7 @@ public class Test {
         for (Field field: Test.class.getFields()) {
             System.out.println(field.getName());
         }
-         System.out.println("1");
+         System.out.println("2");
          System.out.println("1");
     }
 }
