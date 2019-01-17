@@ -19,7 +19,7 @@ public class Test {
 
     static {
         System.out.println("Class initilized");
-        System.out.println("remote");
+        System.out.println("rrrrr");
     }
 
     public static void main (String[] args)
@@ -33,7 +33,7 @@ public class Test {
         for (Field field: Test.class.getFields()) {
             System.out.println(field.getName());
         }
-         System.out.println("local");
+         System.out.println("rrrrr");
          System.out.println("1");
     }
 }
