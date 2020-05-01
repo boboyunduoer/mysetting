@@ -325,7 +325,6 @@ db2 "describe select * from TABLE(MON_GET_PKG_CACHE_STMT ( 'D', NULL, NULL, -2))
 db2diag -time 2017-01-24-19.00:2017-01-24-23.59.59
 db2diag -gi level=severe
 
-
 -----------------------------------------------------------------db2 uninstall
 1.drop all databases    --drop database <NAME>															
 2.stop all db2 instances  --./db2idrop <INSTANCE NAME>	    cd /opt/IBM/db2/V9.7/instance									
