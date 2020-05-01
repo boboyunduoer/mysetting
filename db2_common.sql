@@ -34,6 +34,11 @@ pspg -s where -s stands for color scheme (1-14)
 -----------------------------------------------------------------dblook
 db2look -d dbname -e -nofed -z MYSCHEMA -tw DP\_PB%
 
+cd /home/db2inst1/sqllib/bnd
+db2 "bind db2look.bnd blocking all GRANT_GROUP db2dba sqlerror continue"
+db2 "bind db2lkfun.bnd blocking all GRANT_GROUP db2dba sqlerror continue"
+db2 "bind db2lksp.bnd  blocking all GRANT_GROUP db2dba sqlerror continue"
+
 -----------------------------------------------------------------DB creation
 CREATE DATABASE TESTDB ON /db_data/ DBPATH ON /db_path
 update db cfg using NEWLOGPATH /db_actlogs/db_name/db2_instance_name;
@@ -52,7 +57,7 @@ select  substr(t.tabschema,1,18) as tabschema , substr(t.tabname,1,40) as tabnam
 from    syscat.tables t
 join sysibmadm.admintabinfo ati on t.tabname=ati.tabname and t.tabschema=ati.tabschema
 where   t.type='T' and t.tabschema not like ('SYS%')
-order by tab_size_mb desc fetch first 10 rows only with ur
+order by tab_size_mb desc fetch first 20 rows only with ur
 
 -----------------------------------------------------------------schema
 db2 "call ADMIN_DROP_SCHEMA('SCHEMA_TO_DROP', NULL, 'ERROR_TABLE_SCHEMA_NAME', 'ERROR_TABLE_TABLE_NAME')"
@@ -188,8 +193,8 @@ select tabschema,tabname,colname, lastassignedval, nextcachefirstvalue from SYSI
 --note that when table dropped, the fk references on this table are all dropped.
 --good artical for fk
 --https://www.databasejournal.com/features/db2/article.php/3870031/Referential-Integrity-Best-Practices-for-IBM-DB2.htm
-select varchar(tabschema,10) tabschema,varchar(tabname,20) tabname,varchar(reftabschema,10) reftabschema,varchar(reftabname,10) reftabname, varchar(constname,50) constname, varchar(refkeyname,50) refkeyname, colcount from syscat.references where reftabschema = 'MYSCHEMA' and reftabname='"MYTABLE'
-
+db2 "select varchar(tabschema,10) tabschema,varchar(tabname,20) tabname,varchar(reftabschema,10) reftabschema,varchar(reftabname,20) reftabname, varchar(constname,30) constname, varchar(refkeyname,30) refkeyname, colcount from syscat.references 
+     where reftabschema = 'ADWSRNCT' and reftabname='F_METRICSUM'"
 ----GSMART used:
 
 
@@ -373,6 +378,16 @@ java -cp /home/db2inst1/sqllib/java/db2jcc.jar com.ibm.db2.jcc.DB2Jcc -url "jdbc
 
 java com.ibm.db2.jcc.DB2Jcc -version
 
+-----------------------------------------------------------------execute command as other user (non-loginable)
+-- -s /bin/bash overrides nologin and allows to interpret value of -c option
+su -s /bin/bash -c "echo ddd" adwdpro   
+su -s /bin/bash -c "netstat -tnlp" adwdpro 
+su -s /bin/bash -c "lsof -i :46614" adwdpro  
+
+-----------------------------------------------------------------db2top
+--in l, then a to give Application Handle id
+we can see client pid in 'Client pid:' and client ip and port in '(10.82.46.66 56034]'
+
 -----------------------------------------------------------------test port
 -- test if oprt open in linux
 telnet ip port
@@ -383,10 +398,10 @@ ssh -v -p port ip
 telnet ip port ----- pkgmgr /iu:TelnetClient    -- enable telnet first
 tns ip -port port ---- tns is short for Test-NetworkConnection
 
---test if port is listening, -t : 指明显示TCP端口 -l 只显示listening
-netstat -ta -- in windows and linux
-ss -ta | grep 50001
-ss -tl | grep 50001
+--test if port is listening, -t : 指明显示TCP端口 -l 只显示listening  -p 显示进程信息
+netstat -tap -- in windows and linux
+ss -tap | grep 50001
+ss -tlp | grep 50001
 lsof -i :50000
 
 --test ssl port
@@ -398,3 +413,30 @@ SELECT NUM_EXECUTIONS, AVERAGE_EXECUTION_TIME_S, STMT_SORTS,
    FROM SYSIBMADM.TOP_DYNAMIC_SQL 
    WHERE STMT_TEXT like '%S_SPTSUM%'
    ORDER BY NUM_EXECUTIONS DESC FETCH FIRST 5 ROWS ONLY
+
+-----------------------------------------------------------------cli bind
+--SQL0805N package NULLID.SQLC2H20 was not found https://www.ibm.com/support/pages/sql0805n-package-nullidsqlc2h20-was-not-found
+
+--To check if the package exists in DB Server
+  select pkgname from syscat.packages where pkgname like 'SQLC2H20'
+  db2 list packages for all | grep SQLC2H20
+  
+   
+--Resolving the problem requires you to run the bind command from client against the database that you are attempting to connect to. This will install the package in the database. 
+--Because several of the utilities supplied with DB2 Connect™ are developed using embedded SQL, they must be bound to an IBM mainframe database server before they can be used with that system.
+--It is suggested to bind the package using the below utility list file, db2ubind.lst for Linux, UNIX, and Windows, The bind files are contained in it.
+    
+1. go to db2 client, and cd /home/db2inst1/sqllib/bnd/ 
+2. db2 bind db2clpcs.bnd blocking all grant public collection NULLID
+   -- if you don't know specific bind file
+   -- db2 bind @db2ubind.lst blocking all grant public collection NULLID
+
+--command to Check the name of the package in the bind file using the ddcspkgn command. 
+--bind file could be in db2 client in client server or db2 client in db2 server, it may contains different version, all versions could be installed in DB server
+  ddcspkgn /home/db2inst1/sqllib/bnd/db2clpcs.bnd  
+
+--https://datageek.blog/en/2013/09/04/binding-packages/
+--Generally, an administrative user will run the bind commands below
+db2 bind @db2ubind.lst blocking all grant public
+db2 bind @db2cli.lst blocking all grant public
+db2 bind db2schema.bnd blocking all grant public sqlerror continue
