@@ -91,7 +91,6 @@ db2 "select char(TBSP_NAME,20) TABLESPACE, TBSP_PAGE_SIZE, TBSP_TOTAL_PAGES,TBSP
 -- 回收空间 节省磁盘空间
 select 'db2 " ALTER TABLESPACE ' || char(TBSP_NAME,20)  || ' REDUCE ' || varchar(((TBSP_TOTAL_PAGES-TBSP_PAGE_TOP-1)*TBSP_PAGE_SIZE)/1024/1024) || ' M"' from table (MON_GET_TABLESPACE(NULL,-1)) where  TBSP_NAME not like 'SYS%' and tbsp_type != 'SMS'
 
-
 select * FROM TABLE(MON_GET_CONTAINER('',-2)) AS t;
 --
 b2pd -db dbname -tablespaces
