@@ -440,3 +440,4 @@ SELECT NUM_EXECUTIONS, AVERAGE_EXECUTION_TIME_S, STMT_SORTS,
 db2 bind @db2ubind.lst blocking all grant public
 db2 bind @db2cli.lst blocking all grant public
 db2 bind db2schema.bnd blocking all grant public sqlerror continue
+
