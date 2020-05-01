@@ -421,7 +421,6 @@ SELECT NUM_EXECUTIONS, AVERAGE_EXECUTION_TIME_S, STMT_SORTS,
   select pkgname from syscat.packages where pkgname like 'SQLC2H20'
   db2 list packages for all | grep SQLC2H20
   
-   
 --Resolving the problem requires you to run the bind command from client against the database that you are attempting to connect to. This will install the package in the database. 
 --Because several of the utilities supplied with DB2 Connect™ are developed using embedded SQL, they must be bound to an IBM mainframe database server before they can be used with that system.
 --It is suggested to bind the package using the below utility list file, db2ubind.lst for Linux, UNIX, and Windows, The bind files are contained in it.
