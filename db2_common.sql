@@ -251,7 +251,6 @@ db2 "export to ${TAB_NAME}_tmp.csv of del MODIFIED BY COLDEL${DEL_CHAR} select *
 rm -rf ${TAB_NAME}_tmp.csv
 echo $TAB_NAME.csv && cat $TAB_NAME.csv
 
-
 --load redefine
 while IFS=! read xxx table ixf xxxxx
 do
