@@ -196,7 +196,6 @@ db2 "select varchar(tabschema,10) tabschema,varchar(tabname,20) tabname,varchar(
      where reftabschema = 'ADWSRNCT' and reftabname='F_METRICSUM'"
 ----GSMART used:
 
-
 select 'ALTER TABLE ' || TRIM(rf.tabschema) || '.' ||  RTRIM(rf.TabName) || ' ALTER FOREIGN KEY ' || RTRIM(rf.ConstName) || ' NOT  ENFORCED;' from syscat.references rf join syscat.tables tb on rf.reftabschema = tb.tabschema and rf.reftabname = tb.tabname where tb.tabschema = 'MYSCHEMA'  and tb.type = 'T' and tb.tabname like 'D/_%' escape '/'
 
 select 'ALTER TABLE ' || TRIM(rf.tabschema) || '.' ||  RTRIM(rf.TabName) || ' ALTER FOREIGN KEY ' || RTRIM(rf.ConstName) || '  ENFORCED;' from syscat.references rf join syscat.tables tb on rf.reftabschema = tb.tabschema and rf.reftabname = tb.tabname where tb.tabschema = 'MYSCHEMA'  and tb.type = 'T' and tb.tabname like 'D/_%' escape '/'
