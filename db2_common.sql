@@ -200,7 +200,6 @@ select 'ALTER TABLE ' || TRIM(rf.tabschema) || '.' ||  RTRIM(rf.TabName) || ' AL
 
 select 'ALTER TABLE ' || TRIM(rf.tabschema) || '.' ||  RTRIM(rf.TabName) || ' ALTER FOREIGN KEY ' || RTRIM(rf.ConstName) || '  ENFORCED;' from syscat.references rf join syscat.tables tb on rf.reftabschema = tb.tabschema and rf.reftabname = tb.tabname where tb.tabschema = 'MYSCHEMA'  and tb.type = 'T' and tb.tabname like 'D/_%' escape '/'
 
-
 ---select tabname from syscat.tables where tabschema = 'MYSCHEMA'  and type = 'T' and tabname like 'D/_%' escape '/'
 ----- disable/enable all fk which is ref on xxx table
 ----- when not enforced, fk is just a  informational constraints in table
