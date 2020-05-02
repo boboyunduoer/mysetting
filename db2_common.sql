@@ -210,7 +210,6 @@ select 'ALTER TABLE ' || TRIM(rf.tabschema) || '.' ||  RTRIM(rf.TabName) || ' AL
 ---select 'ALTER TABLE ' || TRIM(tabschema) || '.' ||  RTRIM(TabName) || ' ALTER FOREIGN KEY ' || RTRIM(ConstName) || '   ENFORCED;' from syscat.references where reftabschema = 'MYSCHEMA' and reftabname='MYTABLE';
 ----GSMART used
 
-
 --drop all fk
 SELECT 'ALTER TABLE ' || RTRIM(TabName) || ' DROP FOREIGN KEY ' || RTRIM(ConstName) || ';' FROM SysCat.TabConst WHERE Type='F';
 --disable/enable fk
