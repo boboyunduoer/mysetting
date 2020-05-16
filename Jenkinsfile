@@ -18,7 +18,7 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                sh 'Hello World'
+                echo 'Hello World'
                 checkout scm
             }
         }
@@ -26,7 +26,7 @@ pipeline {
 
     post {
         always {
-            sh 'Hello World'
+            echo 'Hello World'
         }
     }
 }
