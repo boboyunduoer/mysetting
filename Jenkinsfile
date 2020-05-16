@@ -25,10 +25,30 @@ pipeline {
     }
 
     stages {
-        stage("Build") {
+        stage("PreBuild") {
             steps {
-                echo 'This is a Build step'
+                echo 'This is a PreBuild step'
                 checkout scm
+            }
+        }
+
+        stage('Build') {
+            parallel{
+                stage('Build:Module1') { 
+                    steps { 
+                        echo 'Build Module1 stage ...' 
+                    }
+                }
+                stage('Build:Module2') { 
+                    steps { 
+                        echo 'Build Module2 stage ...' 
+                    }
+                }
+                stage('Build:Module3') { 
+                    steps { 
+                        echo 'Build Module3 stage ...' 
+                    }
+                }
             }
         }
     
