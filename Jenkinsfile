@@ -24,10 +24,17 @@ pipeline {
         BUILD_USR_CREDS="${params.CredsToUse}"
     }
 
+    triggers {
+        githubPush()
+    }
+
     stages {
         stage("PreBuild") {
             steps {
                 echo 'This is a PreBuild step'
+                echo "${env.BUILD_USR_CHOICE}"
+                echo "branch: ${env.BRANCH_NAME}"
+                echo "current SHA: ${env.GIT_COMMIT}"
                 checkout scm
             }
         }
