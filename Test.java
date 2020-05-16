@@ -7,7 +7,7 @@ public class Test {
 
      static String a = "dd";
      private String phonenum;
-
+     private int a;
      public String c;
      public String getPhonenum() {
          return this.phonenum;
