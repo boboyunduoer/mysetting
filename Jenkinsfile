@@ -31,6 +31,7 @@ pipeline {
     stages {
         stage("PreBuild") {
             steps {
+                sh 'make check || true'
                 echo 'This is a PreBuild step'
                 echo "${env.BUILD_USR_CHOICE}"
                 echo "branch: ${env.BRANCH_NAME}"
@@ -43,10 +44,9 @@ pipeline {
             steps{
                 echo 'Hello world!'
                 script {
-                    def browsers = ['chrome','firefox']
-                    for (int i = 0;i < browers.size();++i){
-                        echo "Testing the ${browsers[i]} browser"
-                    }
+                    def username = 'Jenkins'
+                    echo 'Hello Mr. ${username}'
+                    echo "I said, Hello Mr. ${username}"   
                 }
             }
         }
