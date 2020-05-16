@@ -15,7 +15,7 @@
 pipeline {
     agent any
 
-    paramenters {
+    parameters {
         choice(name:'PerformMavenRelease',choices:'False\nTrue',description:'desc')
         password(name:'CredsToUse',description:'Apassword to build with',defaultValue:'')
     }
